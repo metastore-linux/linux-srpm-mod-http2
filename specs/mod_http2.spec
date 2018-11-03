@@ -2,7 +2,7 @@
 %{!?_httpd_mmn: %global _httpd_mmn %(cat %{_includedir}/httpd/.mmn 2>/dev/null || echo 0-0)}
 
 Name:                   mod_http2
-Version:                1.10.20
+Version:                1.11.3
 Release:                1%{?dist}
 Summary:                module implementing HTTP/2 for Apache 2
 Group:                  System Environment/Daemons
@@ -35,10 +35,10 @@ make DESTDIR=%{buildroot} install
 rm -rf %{buildroot}/etc/httpd/share/doc/
 
 # remove links and rename SO files
-rm -r %{buildroot}%{_httpd_moddir}/mod_http2.so
-rm -r %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so
-mv %{buildroot}%{_httpd_moddir}/mod_http2.so.0.0.0 %{buildroot}%{_httpd_moddir}/mod_http2.so
-mv %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so.0.0.0 %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so
+#rm -r %{buildroot}%{_httpd_moddir}/mod_http2.so
+#rm -r %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so
+#mv %{buildroot}%{_httpd_moddir}/mod_http2.so.0.0.0 %{buildroot}%{_httpd_moddir}/mod_http2.so
+#mv %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so.0.0.0 %{buildroot}%{_httpd_moddir}/mod_proxy_http2.so
 
 # create configuration
 mkdir -p %{buildroot}%{_httpd_modconfdir}
@@ -57,6 +57,9 @@ make check
 %{_httpd_moddir}/mod_proxy_http2.so
 
 %changelog
+* Sat Nov 3 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1.11.3-1
+- Update to 1.11.3
+
 * Sun May 20 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1.10.20-1
 - Update to 1.10.20
 
